@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chandan Velishala - Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Animate.css for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    /* Custom CSS with Pro Colors */
+    :root {
+      --primary: #2563EB;
+      --secondary: #1E40AF;
+      --background: #F9FAFB;
+      --text: #111827;
+      --accent: #10B981;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background-color: var(--background);
+      padding-top: 70px; /* For fixed navbar */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand, .nav-link {
+      color: var(--text) !important;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: var(--primary) !important;
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 150px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeInDown 1.5s ease;
+    }
+
+    .hero-section .lead {
+      font-size: 1.5rem;
+      margin: 20px 0 30px;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .profile-img-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 100px;
+      height: 4px;
+      background: var(--primary);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Experience Section */
+    .experience-section {
+      padding: 80px 0;
+      background: var(--background);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      padding: 20px 40px;
+      position: relative;
+      width: 50%;
+      animation: fadeInUp 1s ease;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      border: 4px solid #fff;
+      border-radius: 50%;
+      top: 20px;
+      right: -10px;
+      z-index: 1;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      left: -10px;
+    }
+
+    .timeline-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .timeline-card h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .timeline-card p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .timeline-card .duration {
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Skills Section */
+    .skills-section {
+      padding: 80px 0;
+      background: var(--background);
+    }
+
+    .hexagon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hexagon {
+      position: relative;
+      width: 150px;
+      height: 173px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      margin: 0 auto;
+    }
+
+    .hexagon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .hexagon .skill-icon {
+      font-size: 3rem;
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .hexagon:hover .skill-icon {
+      transform: rotate(360deg);
+    }
+
+    .hexagon .skill-name {
+      position: absolute;
+      bottom: -30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .hexagon:hover .skill-name {
+      opacity: 1;
+    }
+    
+    /* Projects Section */
+    .project-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-card .card-body {
+      padding: 25px;
+    }
+
+    .project-card .card-title {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .project-card .tools-used {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .project-card .tools-used strong {
+      color: var(--text);
+    }
+
+    /* Education Section */
+    .education-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      text-align: center;
+      padding: 25px;
+    }
+
+    .education-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .education-card .institution {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .education-card .degree {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .education-card .score {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 80px 0;
+      background: var(--background);
+    }
+
+    .contact-form .form-control {
+      border-radius: 8px;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.1);
+    }
+
+    .contact-form textarea {
+      min-height: 150px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text);
+      color: #fff;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-section .lead {
+        font-size: 1.2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .timeline::before {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        text-align: left !important;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-item::after {
+        left: 21px !important;
+      }
+      
+      .hexagon-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    /* Keyframes for Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Chandan Velishala</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="container">
+      <div class="profile-img-container">
+        <img src="https://scontent.fhyd11-1.fna.fbcdn.net/v/t1.15752-9/494328317_938404921571133_6003144410560631310_n.png?_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_ohc=O_YqtVOAJP4Q7kNvwEUs_3H&_nc_oc=Adl48PTdI4Y-tjv7cgL8qg-gR2uevxldyAOsUJ0vY__UqZkWRyRPWueQ1AhSbVZ75LgcMhUzJPHKgDOchA1UuoHC&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fhyd11-1.fna&oh=03_Q7cD2AFjq735Qw0MoJJF0f-zrtJx4Z8wWZLfUJLEcjZwO9lR_Q&oe=683813B0" alt="Chandan Velishala" class="profile-img">
+      </div>
+      <h1>Chandan Velishala</h1>
+      <p class="lead">B.Tech in Computer Science | AI Enthusiast | Aspiring Entrepreneur</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#projects" class="btn btn-light btn-lg px-4">View Projects</a>
+        <a href="#contact" class="btn btn-outline-light btn-lg px-4">Contact Me</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Me Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <p class="lead">
+            I am a passionate Computer Science student with a keen interest in Artificial Intelligence and entrepreneurship.
+          </p>
+          <p>
+            My journey in technology began with a curiosity about how things work, which evolved into a passion for creating solutions that can make a difference. Through my academic projects and internships, I've developed a strong foundation in programming and problem-solving.
+          </p>
+          <p>
+            When I'm not coding, you can find me working on my book "The Society" or exploring new business ideas. My ultimate goal is to combine my technical skills with my entrepreneurial spirit to build innovative products that solve real-world problems.
+          </p>
+          <div class="mt-4">
+            <a href="#contact" class="btn btn-primary me-2">Hire Me</a>
+            <a href="#" class="btn btn-outline-primary">Download CV</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="p-4 border rounded text-center">
+                <h3 class="text-primary">2+</h3>
+                <p class="mb-0">Projects Completed</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-4 border rounded text-center">
+                <h3 class="text-primary">1</h3>
+                <p class="mb-0">AI Certification</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-4 border rounded text-center">
+                <h3 class="text-primary">3</h3>
+                <p class="mb-0">Programming Languages</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-4 border rounded text-center">
+                <h3 class="text-primary">1</h3>
+                <p class="mb-0">Book in Progress</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section py-5">
+    <div class="container">
+      <h2 class="section-title">My Skills</h2>
+      <div class="hexagon-grid">
+        <!-- Skill Items -->
+        <div class="hexagon">
+          <i class="fab fa-python skill-icon"></i>
+          <span class="skill-name">Python</span>
+        </div>
+        <div class="hexagon">
+          <i class="fab fa-java skill-icon"></i>
+          <span class="skill-name">Core Java</span>
+        </div>
+        <div class="hexagon">
+          <i class="fab fa-html5 skill-icon"></i>
+          <span class="skill-name">HTML5</span>
+        </div>
+        <div class="hexagon">
+          <i class="fab fa-css3-alt skill-icon"></i>
+          <span class="skill-name">CSS3</span>
+        </div>
+        <div class="hexagon">
+          <i class="fas fa-database skill-icon"></i>
+          <span class="skill-name">MySQL</span>
+        </div>
+        <div class="hexagon">
+          <i class="fas fa-robot skill-icon"></i>
+          <span class="skill-name">AI/ML</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <!-- Projects Section -->
+<section id="projects" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title">My Projects</h2>
+    <div class="row g-4">
+      <!-- Varadhi Farms Project -->
+      <div class="col-md-6">
+        <div class="project-card">
+          <img src="https://i0.wp.com/packagingoftheworld.com/wp-content/uploads/2023/09/VF-5.png?fit=1920%2C1080&ssl=1" class="card-img-top" alt="Varadhi Farms">
+          <div class="card-body">
+            <h5 class="card-title">Varadhi Farms</h5>
+            <p class="card-text">The Varadhi Farms website is an e-commerce platform specializing in organic and natural farm products.</p>
+            <div class="tools-used mb-3">
+              <strong>Technologies:</strong> HTML5, CSS3, JavaScript
+            </div>
+            <div class="outcome mb-3">
+              <strong>Key Achievements:</strong>
+              <ul>
+                <li>Built an interactive e-commerce UI with product modals</li>
+                <li>Implemented scroll-triggered animations to boost user engagement by 30%</li>
+                <li>Achieved 100% mobile responsiveness via Flexbox/Grid layouts</li>
+              </ul>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="https://chic-youtiao-1d5bcc.netlify.app/" target="_blank" class="btn btn-primary flex-grow-1">
+                <i class="fas fa-external-link-alt me-2"></i> View Live
+              </a>
+              <a href="#" class="btn btn-outline-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- IRONPULSE GYM Project -->
+      <div class="col-md-6">
+        <div class="project-card">
+          <img src="https://i0.wp.com/www.muscleandfitness.com/wp-content/uploads/2017/09/muscular-back-bodybuilder-1280.jpg?quality=86&strip=all" class="card-img-top" alt="IRONPULSE GYM">
+          <div class="card-body">
+            <h5 class="card-title">IRONPULSE GYM</h5>
+            <p class="card-text">Developed a high-performance gym website with interactive features and responsive design.</p>
+            <div class="tools-used mb-3">
+              <strong>Technologies:</strong> HTML5, CSS3, JavaScript
+            </div>
+            <div class="outcome mb-3">
+              <strong>Key Achievements:</strong>
+              <ul>
+                <li>Built dynamic program modals with workout/diet plans</li>
+                <li>Implemented scroll-triggered animations for better interactivity</li>
+                <li>Achieved 100% mobile responsiveness</li>
+              </ul>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="https://chandanvelishala.github.io/portfolio/" target="_blank" class="btn btn-primary flex-grow-1">
+                <i class="fas fa-external-link-alt me-2"></i> View Live
+              </a>
+              <a href="#" class="btn btn-outline-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Alcohol Detection System Project -->
+      <div class="col-md-6">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Alcohol Detection System">
+          <div class="card-body">
+            <h5 class="card-title">Alcohol Detection System for Vehicles</h5>
+            <p class="card-text">Developed an innovative safety system to prevent drunk driving by integrating alcohol sensors with vehicle ignition systems.</p>
+            <div class="tools-used mb-3">
+              <strong>Tools Used:</strong> 8051 Microcontroller, MQ-3 Sensor, SIM800L Module
+            </div>
+            <div class="outcome mb-3">
+              <strong>Key Features:</strong>
+              <ul>
+                <li>Real-time alcohol level monitoring</li>
+                <li>Automatic engine lock when alcohol detected</li>
+                <li>Emergency alert system with GPS location</li>
+              </ul>
+            </div>
+            <a href="#" class="btn btn-primary">View Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="experience-section py-5">
+    <div class="container">
+      <h2 class="section-title">My Experience</h2>
+      <div class="timeline">
+        <!-- Timeline Item 1 -->
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>AI Intern</h4>
+            <p class="duration">TechSaksham Program | Nov 2024 - Dec 2025</p>
+            <p>Participated in this joint CSR initiative by Microsoft and SAP, gaining hands-on experience with AI concepts and applications through project-based learning.</p>
+            <ul>
+              <li>Developed machine learning models for real-world problems</li>
+              <li>Completed certification in AI fundamentals</li>
+              <li>Collaborated with peers on innovative solutions</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Timeline Item 2 -->
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>Internshala Student Partner</h4>
+            <p class="duration">Internshala | [Add Duration]</p>
+            <p>Promoted internship and training opportunities among fellow students while developing valuable marketing and communication skills.</p>
+            <ul>
+              <li>Organized campus awareness sessions</li>
+              <li>Created engaging social media content</li>
+              <li>Helped students discover career opportunities</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Timeline Item 3 -->
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <h4>Volunteer</h4>
+            <p class="duration">Marpu Foundation | [Add Duration]</p>
+            <p>Contributed to community development initiatives while enhancing teamwork and leadership abilities.</p>
+            <ul>
+              <li>Participated in social awareness campaigns</li>
+              <li>Assisted with event organization</li>
+              <li>Supported fundraising activities</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title">My Education</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="education-card">
+            <div class="institution">SR University</div>
+            <div class="degree">B.Tech in Computer Science</div>
+            <div class="duration">[2026] - Present</div>
+            <div class="score">83%</div>
+            <div class="mt-3">
+              <span class="badge bg-primary">Current</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="education-card">
+            <div class="institution">VMR Polytechnic</div>
+            <div class="degree">Diploma</div>
+            <div class="duration">[2019] - [2023]</div>
+            <div class="score">52%</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="education-card">
+            <div class="institution">Cambridge High School</div>
+            <div class="degree">SSC</div>
+            <div class="duration">[2019]</div>
+            <div class="score">77%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section py-5">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="row">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h3 class="mb-4">Contact Information</h3>
+          <div class="mb-4">
+            <h5><i class="fas fa-envelope me-2 text-primary"></i> Email</h5>
+            <p>chandanvelishala6@gmail.com</p>
+          </div>
+          <div class="mb-4">
+            <h5><i class="fas fa-phone me-2 text-primary"></i> Phone</h5>
+            <p>+91 8014183053</p>
+          </div>
+          <div class="mb-4">
+            <h5><i class="fas fa-map-marker-alt me-2 text-primary"></i> Location</h5>
+            <p>Hyderabad, Telangana, India</p>
+          </div>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/velishala-chandan-b66921265/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/chabdu1/portfolio"><i class="fab fa-github"></i></a>
+            
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <form class="contact-form">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Subject">
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p>&copy; 2025 Chandan Velishala. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/velishala-chandan-b66921265/"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/chabdu1/portfolio"><i class="fab fa-github"></i></a>
+      </div>
+      <p class="mt-3 mb-0">Designed with ❤️ by Chandan</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Animation on scroll
+    const animateOnScroll = function() {
+      const elements = document.querySelectorAll('.timeline-item, .project-card, .education-card');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+
+    // Initialize elements as invisible
+    document.querySelectorAll('.timeline-item, .project-card, .education-card').forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'all 0.6s ease';
+    });
+
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>
