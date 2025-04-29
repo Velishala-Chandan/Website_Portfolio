@@ -46,7 +46,7 @@ No server setup needed. This is a static HTML project.
 
 # Live Preview
 
-Click here to view live
+Click here to view live  https://velishala-chandan.github.io/Website_Portfolio/
 
 # Author
 
